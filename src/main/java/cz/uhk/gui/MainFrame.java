@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
         this.fileOperations = fileOperations;
         setSize(width, height);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         shoppingList = fileOperations.load();   // načtu data ze souboru
         //seedShoppingList(); // testovací data
@@ -80,7 +81,7 @@ public class MainFrame extends JFrame {
         });
         menu1.add(saveToFileItem);
 
-        JMenuItem loadFromFileItem = new JMenuItem("Načíst ze souboru");
+        JMenuItem loadFromFileItem = new JMenuItem("Načíst ze souboru");/*
         loadFromFileItem.addActionListener(e -> {
             Runnable loadData = ()->{
                 try{
@@ -97,7 +98,7 @@ public class MainFrame extends JFrame {
             };
             Thread loadDataThread = new Thread(loadData);
             loadDataThread.start();
-        });
+        });*/
         menu1.add(loadFromFileItem);
 
         setJMenuBar(bar);

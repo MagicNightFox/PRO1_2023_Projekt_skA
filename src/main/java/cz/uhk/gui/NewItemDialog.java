@@ -73,6 +73,16 @@ public class NewItemDialog extends JDialog {
         if(inputName.getText().length()<1){
             errors.add("Název je povinný");
         }
+        if(inputCount.getText().length()<1){
+            errors.add("Počet je povinný");
+        }
+        else{
+            try{
+                int count = Integer.parseInt(inputCount.getText().trim());
+            }catch(NumberFormatException e){
+                errors.add("Počet je ve špatném formátu");
+            }
+        }
         if(inputPrice.getText().length()<1){
             errors.add("Cena je povinná");
         }

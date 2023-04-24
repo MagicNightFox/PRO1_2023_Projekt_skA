@@ -1,5 +1,7 @@
 package cz.uhk.models;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +15,35 @@ public class CsvFileOperations implements FileOperations{
     public ShoppingList load() {
         //TODO load from file - 25.4.
 
-        List<ShoppingItem> polozkyTemp = new ArrayList<>();
-        polozkyTemp.add(new ShoppingItem("dasda",10,1));
+
+        ShoppingList shoppingList = new ShoppingList();
+
+        try{
+            BufferedReader buffReader = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
+            while ((line= buffReader.readLine()) != null){
+                //System.out.println(line);
+                String[] parts = line.split(Character.toString(DELIMETER));
+                //System.out.println(parts);
+                if(parts.length <= 1){
+                    shoppingList.setName(parts[0]);
+                }
+                else{
+                    String name = parts[0];
+                    double price = Double.parseDouble(parts[1]);
+                    int pieces = Integer.parseInt(parts[2]);
+                    boolean isBought = Boolean.parseBoolean(parts[3]);
+                    ShoppingItem item = new ShoppingItem(name, price, pieces);
+                    item.setBought(isBought);
+                    shoppingList.addItem(item);
+                }
+
+
+            }
+            return shoppingList;
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
         return new ShoppingList();
     }

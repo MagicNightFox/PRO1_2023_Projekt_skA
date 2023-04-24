@@ -23,7 +23,7 @@ public class JsonFileOperations implements FileOperations{
             Type targetType = new TypeToken<ShoppingList>(){}.getType();
 
             FileReader reader = new FileReader(FILE_NAME);
-            /*BufferedReader bufferedReader = new BufferedReader(reader);
+            /* BufferedReader bufferedReader = new BufferedReader(reader);
 
             StringBuilder jsonText = new StringBuilder();
             String line;

@@ -9,8 +9,9 @@ public class TableModel extends AbstractTableModel {
     }
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        if(columnIndex==3)
+        if(columnIndex==3) {
             return Boolean.class;
+        }
         return super.getColumnClass(columnIndex);
     }
     @Override
@@ -41,4 +42,17 @@ public class TableModel extends AbstractTableModel {
             return "Položka";
         return super.getColumnName(column);
     }
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex){
+        return columnIndex == 3;
+    }
+
+    @Override
+    public void setValueAt(Object value, int rowIndex, int columnIndex){
+        if (columnIndex == 3){
+            shoppingList.getItems().get(rowIndex).setBought(!shoppingList.getItems().get(rowIndex).isBought());
+            fireTableCellUpdated(rowIndex,columnIndex);
+        }
+    }
+
 }
